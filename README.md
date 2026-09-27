@@ -31,13 +31,18 @@
 ```text
 hunter130_hardware/
 ├── Mechanical/                       # 机械模型与安装手册
+│   ├── EC-H130-V2_装配体.STEP        # STEP 格式整机装配模型（Git LFS）
 │   ├── EC-H130-V2_装配体.x_t         # Parasolid 格式整机装配模型（Git LFS）
 │   └── EC H130-V2 产品安装手册.md
 ├── Electrical/                       # 电气资料
-│   └── Pcb/
-│       ├── PMS/                      # PMS 板 PDF 与三维模型
-│       ├── 腿部电容板/                # 腿部电容板 PDF 与三维模型
-│       └── 髋中心板/                  # 髋中心板 PDF 与三维模型
+│   ├── Pcb/
+│   │   ├── PMS/                      # PMS 板 PDF 与三维模型
+│   │   ├── 胸腔电池安装板/            # 电池安装板 PDF 与三维模型
+│   │   ├── 腿部电容板/                # 腿部电容板 PDF 与三维模型
+│   │   └── 髋中心板/                  # 髋中心板 PDF 与三维模型
+│   └── Wire/
+│       ├── EC-H130线长.md             # 各部位线长、板卡与电阻要求
+│       └── images/ec-h130-wire/       # 线束参考图片
 ├── URDF/                             # 机器人描述与网格资源
 │   ├── EC-H130-V2_URDF.urdf
 │   └── meshes/                       # STL 网格文件
@@ -48,8 +53,9 @@ hunter130_hardware/
 | 资源 | 入口 | 内容 |
 | --- | --- | --- |
 | 安装手册 | [EC H130-V2 产品安装手册](Mechanical/EC%20H130-V2%20产品安装手册.md) | 装配注意事项、安装步骤、操作说明与物料清单 |
-| 机械模型 | [Mechanical](Mechanical/) | Parasolid 格式的整机装配模型 |
-| 电气资料 | [Electrical](Electrical/) | PMS 板、腿部电容板和髋中心板的 PDF 与 STEP 文件 |
+| 机械模型 | [STEP](Mechanical/EC-H130-V2_装配体.STEP) · [Parasolid](Mechanical/EC-H130-V2_装配体.x_t) | 两种格式的整机装配模型，均通过 Git LFS 下载 |
+| 电气资料 | [Electrical/Pcb](Electrical/Pcb/) | PMS 板、胸腔电池安装板、腿部电容板和髋中心板的 PDF 与 STEP 文件 |
+| 线束资料 | [EC-H130 线长](Electrical/Wire/EC-H130线长.md) | 各部位线长、电路板型号、电阻要求与线束参考图片 |
 | 机器人描述 | [URDF](URDF/) | URDF 文件及其引用的 STL 网格资源 |
 
 ## 开始使用
@@ -73,7 +79,7 @@ git lfs pull
 
 1. **了解结构与装配要求**：先阅读[安装手册](Mechanical/EC%20H130-V2%20产品安装手册.md)，了解装配流程、所需物料与安全操作要求。
 2. **查看机械模型**：使用支持 STEP 或 Parasolid 的 CAD 工具打开 [Mechanical](Mechanical/) 中的模型。
-3. **查看电气资料**：按板卡类别查阅 [Electrical/Pcb](Electrical/Pcb/) 下的 PDF 与三维模型。
+3. **查看电气与线束资料**：按板卡类别查阅 [Electrical/Pcb](Electrical/Pcb/) 下的 PDF 与三维模型；线束制作与接线时，查阅 [EC-H130 线长](Electrical/Wire/EC-H130线长.md) 中的尺寸、板卡和电阻要求。
 4. **接入仿真或可视化工具**：加载 [EC-H130-V2_URDF.urdf](URDF/EC-H130-V2_URDF.urdf)，并保留其与 `meshes/` 文件夹的相对位置。接入具体平台时，请按平台要求配置资源路径与控制接口。
 
 ## 软件与后续计划
