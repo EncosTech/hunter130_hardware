@@ -4,7 +4,7 @@
 
 **Hunter V2** 是南京因克斯智能科技有限公司与桥介数物联合打造的开源人形机器人。因克斯负责硬件设计与制造，桥介数物负责软件开发，双方共同推进 Hunter 系列机器人的持续迭代。
 
-本仓库 `encos130_hardware` 提供 Hunter V2（EC H130-V2）的机械模型、电气资料、机器人描述文件和安装手册，供开发者开展结构研究、装配、仿真接入与二次开发。
+本仓库 `hunter130_hardware` 提供 Hunter V2（EC H130-V2）的机械模型、电气资料、机器人描述文件和安装手册，供开发者开展结构研究、装配、仿真接入与二次开发。
 
 ## 项目亮点
 
@@ -29,10 +29,9 @@
 ## 仓库内容
 
 ```text
-encos130_hardware/
+hunter130_hardware/
 ├── Mechanical/                       # 机械模型与安装手册
-│   ├── Hunter130.STEP                # STEP 格式模型
-│   ├── Hunter130.x_t                 # Parasolid 格式模型
+│   ├── EC-H130-V2_装配体.x_t         # Parasolid 格式整机装配模型（Git LFS）
 │   └── EC H130-V2 产品安装手册.md
 ├── Electrical/                       # 电气资料
 │   └── Pcb/
@@ -49,11 +48,28 @@ encos130_hardware/
 | 资源 | 入口 | 内容 |
 | --- | --- | --- |
 | 安装手册 | [EC H130-V2 产品安装手册](Mechanical/EC%20H130-V2%20产品安装手册.md) | 装配注意事项、安装步骤、操作说明与物料清单 |
-| 机械模型 | [Mechanical](Mechanical/) | STEP 与 Parasolid 格式的机械模型 |
+| 机械模型 | [Mechanical](Mechanical/) | Parasolid 格式的整机装配模型 |
 | 电气资料 | [Electrical](Electrical/) | PMS 板、腿部电容板和髋中心板的 PDF 与 STEP 文件 |
 | 机器人描述 | [URDF](URDF/) | URDF 文件及其引用的 STL 网格资源 |
 
 ## 开始使用
+
+### 下载完整模型
+
+本仓库使用 [Git LFS](https://git-lfs.com/) 管理 STEP/STP、Parasolid（X_T/X_B）和 STL 模型，文件扩展名不区分大小写。请先安装 Git 和 Git LFS，再执行：
+
+```bash
+git lfs install
+git clone https://github.com/EncosTech/hunter130_hardware.git
+cd hunter130_hardware
+git lfs pull
+```
+
+已有本地仓库时，在仓库目录执行 `git lfs install`、`git pull` 和 `git lfs pull`。使用 `git lfs ls-files` 可以查看由 LFS 管理的文件。
+
+如果模型文件只有几行文本，并以 `version https://git-lfs.github.com/spec/v1` 开头，说明下载到的是 LFS 指针；请执行 `git lfs pull` 获取完整模型。GitHub 的 **Download ZIP** 是否包含模型原文件取决于仓库设置，建议使用上面的克隆方式。
+
+### 使用资料
 
 1. **了解结构与装配要求**：先阅读[安装手册](Mechanical/EC%20H130-V2%20产品安装手册.md)，了解装配流程、所需物料与安全操作要求。
 2. **查看机械模型**：使用支持 STEP 或 Parasolid 的 CAD 工具打开 [Mechanical](Mechanical/) 中的模型。
@@ -69,6 +85,8 @@ encos130_hardware/
 ## 反馈与贡献
 
 欢迎通过 Issues 反馈资料问题、装配经验与改进建议，也欢迎提交 Pull Request 完善文档和设计资料。反馈时请注明硬件版本、相关文件路径，以及便于复现问题的说明或图片。
+
+提交模型前，请在本地仓库执行 `git lfs install`。根目录的 `.gitattributes` 会自动将上述模型格式交给 LFS；按平常的 `git add`、`git commit`、`git push` 流程提交即可，推送时会同时上传 LFS 文件。新增其他大文件格式时，请先使用 `git lfs track` 配置追踪，并将更新后的 `.gitattributes` 一起提交。配置说明见 [GitHub 官方文档](https://docs.github.com/en/repositories/working-with-files/managing-large-files/configuring-git-large-file-storage)。
 
 ## 许可证
 

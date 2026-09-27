@@ -1,0 +1,6 @@
+# Store CAD models and simulation meshes in Git LFS (case-insensitive extensions).
+*.[sS][tT][eE][pP] filter=lfs diff=lfs merge=lfs -text
+*.[sS][tT][pP] filter=lfs diff=lfs merge=lfs -text
+*.[sS][tT][lL] filter=lfs diff=lfs merge=lfs -text
+*.[xX]_[tT] filter=lfs diff=lfs merge=lfs -text
+*.[xX]_[bB] filter=lfs diff=lfs merge=lfs -text
